@@ -31,6 +31,8 @@
   justify-content: center;
   padding-right: 20%;
   padding-left: 20%;
+  padding-top: 50px;
+  padding-bottom: 50px;
 }
 
 .inside-content {
@@ -70,8 +72,8 @@
 }
 
 .inside-content .num-output {
-  border-color: solid red;
-  border-width: 10px;
+  border: solid var(--primary-color);
+  border-width: 1px;
   padding: 10px;
   margin: 20px;
   width: 100%;
@@ -80,7 +82,24 @@
 }
 
 .inside-content .width-content {
-  width: 50%;
+  width: 60%;
+}
+
+.inside-content .output-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+table {
+  width: 100%;
+}
+
+table,
+th,
+td {
+  padding: 10px;
+  border: 1px solid black;
+  border-collapse: collapse;
 }
 
 @media only screen and (max-width: 500px) {

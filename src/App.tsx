@@ -1,30 +1,51 @@
 import React, { useState } from "react";
+import { useEffect } from "react";
 import "./App.css";
 
 function App() {
   const [num1, setNum1] = useState("");
   const [num2, setNum2] = useState("");
   const [result, setResult] = useState(0);
+  const [history, setHistory] = useState([]);
 
-  const calculate = () => {
-    fetch("http://localhost:4000/api/calculate", {
+  const getResults = () => {
+    fetch("http://localhost:4000/api/history", {
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json;charset=UTF-8",
       },
-      method: "post",
-      body: JSON.stringify({
-        number1: num1,
-        number2: num2,
-      }),
+      method: "GET",
     })
-      .then((res: any) => {
-        console.log(res.body);
-        setResult(Number(res.body.sum));
+      .then((response) => response.json())
+      .then((history: any) => {
+        setHistory(history);
       })
       .catch((err) => {
         console.log(err);
       });
   };
+
+  const calculate = () => {
+    fetch("http://localhost:4000/api/calculate", {
+      headers: {
+        "Content-Type": "application/json;charset=UTF-8",
+      },
+      method: "POST",
+      body: JSON.stringify({
+        number1: num1,
+        number2: num2,
+      }),
+    })
+      .then((response) => response.json())
+      .then((sum: number) => {
+        setResult(sum);
+        return getResults();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  useEffect(() => getResults(), []);
 
   return (
     <div className="main">
@@ -52,6 +73,24 @@ function App() {
           <div className="hr" />
           <div>Results</div>
           <div className="num-output width-content">{result}</div>
+          <div className="output-list width-content">
+            <table>
+              <thead>
+                <th>Number 1</th>
+                <th>Number 2</th>
+                <th>Sum</th>
+              </thead>
+              <tbody>
+                {history.map((h: any, i) => (
+                  <tr key={i}>
+                    <td>{h.num1}</td>
+                    <td>{h.num2}</td>
+                    <td>{h.sum}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
