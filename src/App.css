@@ -1,0 +1,90 @@
+:root {
+  --primary-color: #c10708;
+  --dark-grey: #a4a4a4;
+  --light-gray: #00000029;
+  --white: #ffffff;
+}
+
+.main {
+  color: var(--dark-grey);
+  width: 100%;
+  height: 100vh;
+}
+
+.main .navbar {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  text-align: center;
+  width: 100%;
+  background: var(--primary-color);
+  background-color: var(--primary-color);
+  color: var(--white);
+  font-size: larger;
+}
+
+.main .content {
+  background-color: var(--white);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-right: 20%;
+  padding-left: 20%;
+}
+
+.inside-content {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  width: 100%;
+  padding: 10%;
+  flex-direction: column;
+  border: solid var(--light-gray);
+  border-width: 1px;
+  box-shadow: 5px 5px 10px var(--light-gray);
+}
+
+.inside-content .num-input {
+  border-color: var(--light-gray);
+  border-width: 1px;
+  padding: 10px;
+  margin: 20px;
+}
+
+.inside-content .sum-button {
+  background-color: var(--primary-color);
+  border-color: var(--light-gray);
+  border-width: 1px;
+  padding: 10px;
+  color: var(--white);
+  cursor: pointer;
+}
+
+.inside-content .hr {
+  width: 100%;
+  height: 1px;
+  margin-top: 10%;
+  margin-bottom: 10%;
+  background-color: var(--primary-color);
+}
+
+.inside-content .num-output {
+  border-color: solid red;
+  border-width: 10px;
+  padding: 10px;
+  margin: 20px;
+  width: 100%;
+  text-align: center;
+  color: var(--dark-grey);
+}
+
+.inside-content .width-content {
+  width: 50%;
+}
+
+@media only screen and (max-width: 500px) {
+  .inside-content .width-content {
+    width: 100%;
+  }
+}
